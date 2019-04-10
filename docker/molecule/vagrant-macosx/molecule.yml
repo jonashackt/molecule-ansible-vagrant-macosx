@@ -1,14 +1,4 @@
-# molecule-ansible-vagrant-macosx
-Example project showing how to use Ansible &amp; Molecule with MacOS as infrastructure
-
-
-As introduced in [molecule-ansible-docker-vagrant](https://github.com/jonashackt/molecule-ansible-docker-vagrant), we're using a system level use case (installing Docker) to test a Ansible role with [Molecule](https://molecule.readthedocs.io/).
-
-Running MacOSX in VirtualBox with Vagrant isn't a common task, but you maybe need that to test your development enviroment Ansible setup. The problem is already solved here: [vagrant-macosx](https://github.com/jonashackt/vagrant-macosx)
-
-Therefore we use the [molecule.yml](docker/molecule/vagrant-macosx/molecule.yml) to implement these findings:
-
-```yaml
+---
 scenario:
   name: vagrant-macosx
 
@@ -54,11 +44,4 @@ verifier:
   options:
     # show which tests where executed in test output
     v: 1
-```
 
-Now let's try to run the MacOSX VagrantBox with Molecule:
-
-```
-cd docker
-molecule --debug create --scenario-name vagrant-macosx
-```

@@ -2,19 +2,17 @@
 - name: Prepare
   hosts: all
   gather_facts: false
-  become: yes
   tasks:
     - name: Install python for Ansible
       raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
       become: true
       changed_when: false
 
-    - name: install python-pip package
-      apt:
-        pkg:
-          - python-pip
+    - name: install python via homebrew, which includes pip on Mac
+      homebrew:
+        name: python
         state: latest
-        update_cache: true
+        update_homebrew: yes
 
     - name: Add Docker apt key
       apt_key:

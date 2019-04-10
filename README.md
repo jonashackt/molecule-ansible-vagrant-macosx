@@ -1,6 +1,7 @@
 # molecule-ansible-vagrant-macosx
 Example project showing how to use Ansible &amp; Molecule with MacOS as infrastructure
 
+[![asciicast](https://asciinema.org/a/239997.svg)](https://asciinema.org/a/239997)
 
 As introduced in [molecule-ansible-docker-vagrant](https://github.com/jonashackt/molecule-ansible-docker-vagrant), we're using a system level use case (installing Docker) to test a Ansible role with [Molecule](https://molecule.readthedocs.io/).
 

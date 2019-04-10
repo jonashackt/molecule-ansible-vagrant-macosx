@@ -14,27 +14,8 @@
         state: latest
         update_homebrew: yes
 
-    - name: Add Docker apt key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-        state: present
-      ignore_errors: true
-
-    - name: Add Docker apt repo
-      apt_repository:
-        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
-        state: present
-
-    - name: Install Docker apt package
-      apt:
-        pkg: docker-ce
+    - name: Install Docker via homebrew cask
+      homebrew_cask:
+        pkg: docker
         state: latest
-        update_cache: yes
 
-    - name: add vagrant user to docker group
-      user:
-        name: vagrant
-        groups: docker
-        append: yes
-      become: true

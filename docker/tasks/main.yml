@@ -1,32 +1,11 @@
----
-# tasks file for docker
-- name: Log on which Linux distro Docker is going to be installed
+- name: Log on which Distro or OS Docker is going to be installed
   debug:
-    msg: "The distro is: {{ ansible_distribution|lower }} and the version name is: {{ ansible_lsb.codename }}"
+    msg: "The distro is: {{ ansible_distribution }}"
 
-- name: Add Docker apt key
-  apt_key:
-    url: https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg
-    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
-    state: present
-  ignore_errors: true
+- name: Run Docker installation on MacOS
+  include_tasks: docker-macosx.yml
+  when: ansible_distribution == "MacOSX"
 
-- name: Add Docker apt repo
-  apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_lsb.codename }} stable"
-    state: present
-
-- name: Install Docker apt package
-  apt:
-    pkg: docker-ce
-    state: latest
-    update_cache: yes
-
-- name: add vagrant user to docker group
-  user:
-    name: vagrant
-    groups: docker
-    append: yes
-  become: true
-
-
+- name: Run Docker installation on Ubuntu
+  include_tasks: docker-ubuntu.yml
+  when: ansible_os_family == "Debian"

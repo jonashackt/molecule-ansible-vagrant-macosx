@@ -1,0 +1,16 @@
+---
+- name: install python via homebrew, which includes pip on Mac
+  homebrew:
+    name: python
+    state: latest
+    update_homebrew: yes
+
+- name: install Docker via homebrew
+  homebrew:
+    name: docker
+    state: latest
+
+- name: Install Docker via homebrew cask
+  homebrew_cask:
+    pkg: docker
+    state: latest
